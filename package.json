@@ -1,15 +1,19 @@
 {
-  "name": "my-app",
+  "name": "train-ts",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "/train",
+  "homepage": "/train",
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^12.1.4",
+    "@testing-library/react": "^13.0.1",
     "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^16.11.26",
+    "@types/react": "^18.0.3",
+    "@types/react-dom": "^18.0.0",
     "babel-jest": "^27.4.2",
     "babel-loader": "^8.2.3",
     "babel-plugin-named-asset-import": "^0.3.8",
@@ -18,12 +22,13 @@
     "browserslist": "^4.18.1",
     "camelcase": "^6.2.1",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
+    "classnames": "^2.3.1",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.2.0",
     "dotenv": "^10.0.0",
     "dotenv-expand": "^5.1.0",
     "eslint": "^8.3.0",
-    "eslint-config-react-app": "^7.0.0",
+    "eslint-config-react-app": "^7.0.1",
     "eslint-webpack-plugin": "^3.1.1",
     "file-loader": "^6.2.0",
     "fs-extra": "^10.0.0",
@@ -41,7 +46,7 @@
     "prompts": "^2.4.2",
     "react": "^18.0.0",
     "react-app-polyfill": "^3.0.0",
-    "react-dev-utils": "^12.0.0",
+    "react-dev-utils": "^12.0.1",
     "react-dom": "^18.0.0",
     "react-refresh": "^0.11.0",
     "resolve": "^1.20.0",
@@ -52,6 +57,7 @@
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.0.2",
     "terser-webpack-plugin": "^5.2.5",
+    "typescript": "^4.6.3",
     "web-vitals": "^2.1.4",
     "webpack": "^5.64.4",
     "webpack-dev-server": "^4.6.0",
@@ -93,7 +99,7 @@
       "react-app-polyfill/jsdom"
     ],
     "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTests.js"
+      "<rootDir>/src/setupTests.ts"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
@@ -138,6 +144,8 @@
     ]
   },
   "devDependencies": {
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
     "url": "^0.11.0"
   }
 }
