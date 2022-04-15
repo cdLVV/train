@@ -14,7 +14,12 @@ interface Props extends CardData {
 function Card(props: Props) {
   const { className, name, img, url } = props;
   return (
-    <a href={url} target="_blank" className={cn("card text-center", className)}>
+    <a
+      href={url}
+      target="_blank"
+      rel="noreferrer"
+      className={cn("card text-center", className)}
+    >
       <img src={img} alt={name} />
       <span>{name}</span>
     </a>

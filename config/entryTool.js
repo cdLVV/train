@@ -37,7 +37,7 @@ const getHtmlPlugin = (entries, isEnvProduction) =>
           template: paths.appHtml,
           chunks: [name, 0], // 只会插入名字中带 "0" 或者 带 name 的js 问题
           filename: `${name}.html`,
-          title: `${name} html`,
+          title: `${name}`,
         },
         isEnvProduction
           ? {

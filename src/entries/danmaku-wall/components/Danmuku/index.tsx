@@ -48,7 +48,7 @@ function Component(props: Props) {
       });
       totalRef.current = containerEle.clientWidth - right;
     }
-  }, []);
+  }, [container]);
 
   useEffect(() => {
     const ele = eleRef.current;
@@ -91,10 +91,10 @@ function Component(props: Props) {
       id = requestAnimationFrame(step);
 
       return () => {
-        cancelAnimationFrame(id);
+        id && cancelAnimationFrame(id);
       };
     }
-  }, [status]);
+  }, [container, onEnd, status]);
 
   const handleFocus = useCallback(() => {
     setStatus("pause");
@@ -107,7 +107,7 @@ function Component(props: Props) {
   return (
     <span
       ref={eleRef}
-      className="danmuka"
+      className="danmaku"
       style={style}
       onMouseEnter={handleFocus}
       onMouseOut={handleUnFocus}
