@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card, { CardData } from "./components/Card";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import "./App.less";
 
 function App() {
@@ -54,26 +56,7 @@ function App() {
   }, []);
   return (
     <div className="my-home-page">
-      <div className="header">
-        <div className="header-wrapper w-content flex flex-row justify-between items-center">
-          <div className="header-left flex flex-row items-center">
-            <div className="avator">
-              <img
-                width="42"
-                height="42"
-                src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Felement_pic%2F18%2F03%2F30%2F35b980532ba9860fc07614eb3ba9c30f.jpg&amp;refer=http%3A%2F%2Fbpic.588ku.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1644997086&amp;t=857bbaf90e3fa08d949362e96669288f"
-                alt="头像"
-              />
-            </div>
-            <span>极客大叔的爱好</span>
-          </div>
-          <div className="header-right">
-            <a href="#movie">喜欢的电影</a>
-            <a href="#book">喜欢的书</a>
-            <a href="#talking">聊一聊</a>
-          </div>
-        </div>
-      </div>
+      <Header />
       <main className="w-content">
         <section id="movie">
           <h2 className="section-title font-bold text-center text-lg">
@@ -96,25 +79,7 @@ function App() {
           </div>
         </section>
       </main>
-      <footer id="talking">
-        <div className="w-content footer-wrapper">
-          <div className="py-3 flex items-center justify-between">
-            <p>
-              王小波说他是一只特立独行的猪，那我就当个一只特立独行的鸟吧。交个朋友么，扫下右边的二维码。
-            </p>
-            <img
-              className="qr-code"
-              width="120"
-              height="120"
-              src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F07c6686e680086ee3c92eb48e10df3325832fac568d-uvzROb_fw658&amp;refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1644998928&amp;t=78974b201e95977b57d1faafdb6a821d"
-              alt="二维码"
-            />
-          </div>
-          <p className="copyright py-2 text-sm text-center">
-            版权所有@极客大叔
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

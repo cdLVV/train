@@ -1,0 +1,28 @@
+.header {
+  flex-shrink: 0;
+  font-size: 12px;
+  height: 60px;
+  background-color: #ff4c4f;
+  .header-wrapper {
+    height: 100%;
+    color: #ffffff;
+    .avator {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 6px;
+      > img {
+        object-fit: cover;
+      }
+    }
+    .header-right {
+      a {
+        color: #fff;
+      }
+      a + a {
+        margin-left: 6px;
+      }
+    }
+  }
+}
