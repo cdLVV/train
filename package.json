@@ -73,7 +73,18 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "parserOptions": {
+      "babelOptions": {
+        "presets": [
+          [
+            "babel-preset-react-app",
+            false
+          ],
+          "babel-preset-react-app/prod"
+        ]
+      }
+    }
   },
   "browserslist": {
     "production": [
@@ -144,8 +155,10 @@
     ]
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.4",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
+    "postcss-import": "^14.1.0",
     "url": "^0.11.0"
   }
 }

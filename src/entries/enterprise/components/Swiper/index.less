@@ -1,51 +1,41 @@
 .swiper {
-  height: auto;
+  height: 300px;
   overflow: hidden;
   ul {
     height: 300px;
   }
   img {
-    height: 300px;
+    // height: 300px;
     width: 100%;
+    min-height: 100%;
     object-fit: cover;
   }
 }
 @media (min-width: 576px) {
   .swiper {
     height: 400px;
-    ul,img {
-      height: 100%;
-    }
   }
 }
 @media (min-width: 768px) {
   .swiper {
     height: 500px;
-    ul,img {
-      height: 100%;
-    }
   }
 }
 @media (min-width: 991.98px) {
   .swiper {
     height: 600px;
-    ul,img {
-      height: auto;
-    }
   }
 }
 @media (min-width: 1199.98px) {
   .swiper {
     height: 800px;
-    ul,img {
-      height: auto;
-    }
   }
 }
 .swiper {
   position: relative;
   ul {
     width: 100%;
+    height: 100%;
     position: relative;
     z-index: 2;
     margin: auto;
@@ -54,6 +44,7 @@
     overflow: hidden;
     li {
       position: absolute;
+      height: 100%;
       // display: none;
       float: left;
       z-index: 0;
@@ -78,45 +69,82 @@
   }
 }
 
-@carousel-indicator-width: 30px;
-@carousel-indicator-height: 3px;
-@carousel-indicator-spacer: 3px;
-@carousel-indicator-active-bg: #fff;
-@carousel-control-width: 15%;
-@carousel-indicator-hit-area-height: 10px;
+@swiper-indicator-width: 30px;
+@swiper-indicator-height: 3px;
+@swiper-indicator-spacer: 3px;
+@swiper-indicator-active-bg: #fff;
+@swiper-control-width: 15%;
+@swiper-indicator-hit-area-height: 10px;
+@swiper-control-icon-width: 20px;
 
-.carousel-indicators {
+.swiper-indicators {
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 15;
+  z-index: 20;
   display: flex;
   justify-content: center;
   padding-left: 0; // override <ol> default
-  // Use the .carousel-control's width as margin so we don't overlay those
-  margin-right: @carousel-control-width;
-  margin-left: @carousel-control-width;
+  // Use the .swiper-control's width as margin so we don't overlay those
+  margin-right: @swiper-control-width;
+  margin-left: @swiper-control-width;
   list-style: none;
 
   &-item {
     box-sizing: content-box;
     flex: 0 1 auto;
-    width: @carousel-indicator-width;
-    height: @carousel-indicator-height;
-    margin-right: @carousel-indicator-spacer;
-    margin-left: @carousel-indicator-spacer;
+    width: @swiper-indicator-width;
+    height: @swiper-indicator-height;
+    margin-right: @swiper-indicator-spacer;
+    margin-left: @swiper-indicator-spacer;
     text-indent: -999px;
     cursor: pointer;
-    background-color: @carousel-indicator-active-bg;
+    background-color: @swiper-indicator-active-bg;
     background-clip: padding-box;
     // Use transparent borders to increase the hit area by 10px on top and bottom.
-    border-top: @carousel-indicator-hit-area-height solid transparent;
-    border-bottom: @carousel-indicator-hit-area-height solid transparent;
+    border-top: @swiper-indicator-hit-area-height solid transparent;
+    border-bottom: @swiper-indicator-hit-area-height solid transparent;
     opacity: 0.5;
   }
 
   &-item-active {
     opacity: 1;
+  }
+}
+
+.swiper-control {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: @swiper-control-width;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  background: 0 0;
+  border: 0;
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+  &:hover {
+    opacity: 0.9;
+  }
+  &-icon {
+    display: inline-block;
+    width: @swiper-control-icon-width;
+    height: @swiper-control-icon-width;
+    background: 50% / 100% 100% no-repeat;
+    background-image: url("../../images/left.png");
+  }
+}
+
+.swiper-control-next {
+  right: 0;
+  &-icon {
+    transform: rotate(180deg);
   }
 }

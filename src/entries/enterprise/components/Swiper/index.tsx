@@ -11,6 +11,7 @@ function Swiper(props: Iprops) {
   const { defaultIndex = 0, imgList = [], autoPlay = false } = props;
   const [currentIndex, setIndex] = useState(defaultIndex);
   const preRef = useRef<number>(currentIndex);
+  const isChangeJustNowRef = useRef(false);
   useEffect(() => {
     setIndex(defaultIndex);
   }, [defaultIndex]);
@@ -26,7 +27,10 @@ function Swiper(props: Iprops) {
       let id: NodeJS.Timeout;
       const fn = () => {
         id = setTimeout(() => {
-          setIndex((pre) => (pre < length - 1 ? pre + 1 : 0));
+          if (!isChangeJustNowRef.current) {
+            setIndex((pre) => (pre < length - 1 ? pre + 1 : 0));
+          }
+          isChangeJustNowRef.current = false;
           fn();
         }, 5000);
       };
@@ -38,11 +42,27 @@ function Swiper(props: Iprops) {
 
   const handleChange: React.MouseEventHandler<HTMLOListElement> = useCallback(
     (e) => {
+      isChangeJustNowRef.current = true;
       // @ts-ignore
       const next = Number(e.target.dataset.slideTo);
       setIndex(next);
     },
     []
+  );
+  const handleToNext: React.MouseEventHandler<HTMLButtonElement> = useCallback(
+    (e) => {
+      isChangeJustNowRef.current = true;
+      // @ts-ignore
+      const direction = String(e.target.dataset.slideTo);
+      console.log({ direction });
+
+      if (direction === "next") {
+        setIndex((pre) => (pre < length - 1 ? pre + 1 : 0));
+      } else {
+        setIndex((pre) => (pre === 0 ? length - 1 : pre - 1));
+      }
+    },
+    [length]
   );
 
   return (
@@ -68,18 +88,31 @@ function Swiper(props: Iprops) {
           );
         })}
       </ul>
-      <ol className="carousel-indicators" onClick={handleChange}>
+      <ol className="swiper-indicators" onClick={handleChange}>
         {imgList.map((item, index) => (
           <li
             key={index}
-            className={cn("carousel-indicators-item", {
-              "carousel-indicators-item-active": currentIndex === index,
+            className={cn("swiper-indicators-item", {
+              "swiper-indicators-item-active": currentIndex === index,
             })}
             data-slide-to={index}
-            data-target="#carousel-example-generic"
           />
         ))}
       </ol>
+      <button className="swiper-control" type="button" onClick={handleToNext}>
+        <div className="swiper-control-icon" />
+      </button>
+      <button
+        className="swiper-control swiper-control-next"
+        type="button"
+        data-slide-to="next"
+        onClick={handleToNext}
+      >
+        <div
+          className="swiper-control-icon swiper-control-next-icon"
+          data-slide-to="next"
+        />
+      </button>
     </div>
   );
 }

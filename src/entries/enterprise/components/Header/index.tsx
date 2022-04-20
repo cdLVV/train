@@ -5,7 +5,10 @@ import "./index.less";
 import logoImg from "../../images/logo.png";
 
 function Header(props: any) {
-
+  const [isShow, setIsShow] = useState(false);
+  const handleShow = useCallback(() => {
+    setIsShow((pre) => !pre);
+  }, []);
   return (
     <div className="header">
       <div className="header-content">
@@ -19,16 +22,17 @@ function Header(props: any) {
           />
         </a>
         <button
-          className="navbar-toggler"
+          className="header-navbar-toggler"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="true"
+          onClick={handleShow}
         >
-          <span className="navbar-toggler-icon"></span>
+          <div className="header-navbar-toggler-icon" />
         </button>
-        <div className="header-collapse">
+        <div
+          className={cn("header-collapse", {
+            "header-collapse-not-show": !isShow,
+          })}
+        >
           <a href="/index.html">首页</a>
           <a href="/index.html">新闻</a>
           <a href="/index.html">关于我们</a>
