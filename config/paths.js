@@ -51,26 +51,35 @@ const resolveModule = (resolveFn, filePath) => {
   return resolveFn(`${filePath}.js`);
 };
 
-function walkSync(currentDirPath = resolveApp("src/entries"), entries = []) {
+function walkSync(
+  currentDirPath = resolveApp("src/entries"),
+  entries = [],
+  entriesMap = {},
+  prefix = ""
+) {
   fs.readdirSync(currentDirPath).forEach(function (name) {
     var filePath = path.join(currentDirPath, name);
     var stat = fs.statSync(filePath);
     if (stat.isFile()) {
       return;
-    } else if (stat.isDirectory()) {
+    } else if (stat.isDirectory() && !/components|images/.test(name)) {
       if (name === "enterprise") {
-        entries.push({ path: filePath, name: `${name}/index` });
+        // entries.push({ path: filePath, name: `${name}/index` });
+        walkSync(filePath, entries, entriesMap, `${name}/`);
         return;
       }
-      entries.push({ path: filePath, name });
+      // console.log({ path: filePath, name: `${prefix}${name}` });
+      const realName = `${prefix}${name}`;
+      entriesMap[realName] = filePath;
+      entries.push({ path: filePath, entriesMap, name: realName });
     }
   });
 
-  return entries;
+  return { entriesPath: entries, entriesMap };
 }
 
-const entriesPath = walkSync();
-
+const { entriesPath, entriesMap } = walkSync();
+// console.log(entriesPath);
 // const entriesPath = ["a", "b"].map((name) => {
 //   const filePath = resolveModule(resolveApp, `src/entries/${name}/index`);
 //   return { path: filePath, name };
@@ -85,6 +94,7 @@ module.exports = {
   appHtml: resolveApp("public/index.html"),
   // appIndexJs: resolveModule(resolveApp, "src/index"),
   entriesPath,
+  entriesMap,
   appPackageJson: resolveApp("package.json"),
   appSrc: resolveApp("src"),
   appTsConfig: resolveApp("tsconfig.json"),

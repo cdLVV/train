@@ -11,6 +11,8 @@ const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const InterpolateHtmlPlugin = require("react-dev-utils/InterpolateHtmlPlugin");
 const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
@@ -108,10 +110,6 @@ module.exports = function (webpackEnv) {
   // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
-
-  console.log({ env });
-  console.log(process.env);
-
   const shouldUseReactRefresh = env.raw.FAST_REFRESH;
 
   // common function to get style loaders
@@ -198,7 +196,8 @@ module.exports = function (webpackEnv) {
 
   const entries = entryTool.getEntries(isEnvDevelopment);
 
-  console.log("modules.webpackAliases:", modules.webpackAliases);
+  // console.log(entries);
+
   return {
     target: ["browserslist"],
     mode: isEnvProduction ? "production" : isEnvDevelopment && "development",
@@ -259,6 +258,9 @@ module.exports = function (webpackEnv) {
       level: "none",
     },
     optimization: {
+      splitChunks: {
+        chunks: "all",
+      },
       minimize: isEnvProduction,
       minimizer: [
         // This is only used in production mode
@@ -664,6 +666,7 @@ module.exports = function (webpackEnv) {
         new ReactRefreshWebpackPlugin({
           overlay: false,
         }),
+      // new BundleAnalyzerPlugin(),
       // Watcher doesn't work well if you mistype casing in a path so we use
       // a plugin that prints an error when you attempt to do this.
       // See https://github.com/facebook/create-react-app/issues/240

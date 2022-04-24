@@ -54,7 +54,6 @@ function Swiper(props: Iprops) {
       isChangeJustNowRef.current = true;
       // @ts-ignore
       const direction = String(e.target.dataset.slideTo);
-      console.log({ direction });
 
       if (direction === "next") {
         setIndex((pre) => (pre < length - 1 ? pre + 1 : 0));

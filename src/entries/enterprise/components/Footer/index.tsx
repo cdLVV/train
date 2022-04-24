@@ -1,13 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import cn from "classnames";
-import React, { useRef, useEffect, useState, useCallback, memo } from "react";
+import { memo } from "react";
 import bgImg from "../../images/bg_pattern_02.png";
 
 function Header(props: any) {
-  const [isShow, setIsShow] = useState(false);
-  const handleShow = useCallback(() => {
-    setIsShow((pre) => !pre);
-  }, []);
   return (
     <div
       className="bg-repeat bg-left-top py-3 text-white"

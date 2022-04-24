@@ -1,10 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import cn from "classnames";
-import React, { useRef, useEffect, useState, useCallback, memo } from "react";
+import { useState, useCallback, memo } from "react";
 import "./index.less";
 import logoImg from "../../images/logo.png";
 
 function Header(props: any) {
+  const PUBLIC_URL = process.env.PUBLIC_URL;
+
   const [isShow, setIsShow] = useState(false);
   const handleShow = useCallback(() => {
     setIsShow((pre) => !pre);
@@ -33,9 +35,9 @@ function Header(props: any) {
             "header-collapse-not-show": !isShow,
           })}
         >
-          <a href="/index.html">首页</a>
-          <a href="/index.html">新闻</a>
-          <a href="/index.html">关于我们</a>
+          <a href={`${PUBLIC_URL}/enterprise/index.html`}>首页</a>
+          <a href={`${PUBLIC_URL}/enterprise/list.html`}>新闻</a>
+          <a href={`${PUBLIC_URL}/enterprise/about.html`}>关于我们</a>
         </div>
       </div>
     </div>

@@ -1,0 +1,32 @@
+@primary-color: #007bff;
+
+.pagination {
+  @apply mb-6;
+  & > li {
+    @apply border border-[#dee2e6] w-10 h-10 flex items-center justify-center cursor-pointer;
+    color: @primary-color;
+    &:first-child {
+      border-top-left-radius: 0.25rem;
+      border-bottom-left-radius: 0.25rem;
+    }
+    &:last-child {
+      border-top-right-radius: 0.25rem;
+      border-bottom-right-radius: 0.25rem;
+    }
+  }
+  .page-item-not-active {
+    &:hover {
+      color: #0056b3;
+      background-color: #e9ecef;
+      border-color: #dee2e6;
+    }
+  }
+  .page-item-active {
+    @apply text-white;
+    background-color: @primary-color;
+    border-color: @primary-color;
+  }
+  .page-item-disabled {
+    cursor: not-allowed;
+  }
+}

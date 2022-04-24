@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { memo } from "react";
 import LazyImage from "../LazyImage";
 import "./index.less";

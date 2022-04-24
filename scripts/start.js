@@ -43,7 +43,7 @@ const isInteractive = process.stdout.isTTY;
 //   process.exit(1);
 // }
 paths.entriesPath.forEach(({path, name}) => {
-  console.log({path, name});
+  // console.log({path, name});
   if (!checkRequiredFiles([paths.appHtml, path])) {
     process.exit(1);
   }

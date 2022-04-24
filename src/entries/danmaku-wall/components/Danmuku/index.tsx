@@ -149,7 +149,6 @@ Danmuku.launch = (props: Props) => {
   });
 
   root = root || ReactDOM.createRoot(document.getElementById('screen') as HTMLElement);
-  console.log(root);
   root.render(<TempDanmuku />);
   // ReactDOM2.render(
   //   <TempDanmuku />,
