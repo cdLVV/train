@@ -41,7 +41,7 @@ function App() {
       <div className="news-detail-title">
         <div>{data?.title}</div>
       </div>
-      <div className="px-5 py-4" dangerouslySetInnerHTML={{ __html: html }} />
+      <div className="px-5 py-4 news-detail-content" dangerouslySetInnerHTML={{ __html: html }} />
       <Footer />
     </div>
   );
