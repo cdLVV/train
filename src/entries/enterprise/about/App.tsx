@@ -10,9 +10,9 @@ function App() {
   }, []);
 
   return (
-    <div className="enterprise">
+    <div className="enterprise flex flex-col">
       <Header />
-      <section className="flex flex-col sm:flex-row py-4 px-3">
+      <section className="flex-1 flex flex-col sm:flex-row py-4 px-3">
         <div
           // style="width: 697px; height: 550px; border: #ccc solid 1px"
           className=" h-[550px] border border-gray-300 flex-none w-full sm:w-1/2"
