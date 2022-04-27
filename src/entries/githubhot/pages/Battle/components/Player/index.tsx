@@ -1,6 +1,6 @@
 import { getGithubUser, GetGithubUserRes } from "@/api/github";
 import LazyImage from "@/entries/githubhot/components/LazyImage";
-import { memo, useCallback, useState, ChangeEventHandler, useRef } from "react";
+import { memo, useCallback, useState } from "react";
 import { useFormik } from "formik";
 import "./index.less";
 

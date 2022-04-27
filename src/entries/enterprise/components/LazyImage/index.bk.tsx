@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { memo, useEffect, useRef, useState } from "react";
 import cn from "classnames";
 import "./index.less";

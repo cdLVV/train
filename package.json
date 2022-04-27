@@ -73,7 +73,11 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "prepare": "husky install",
+    "check": "npm run static-check && npm run eslint-check",
+    "static-check": "tsc",
+    "eslint-check": "eslint src/ --max-warnings 0"
   },
   "sideEffects": false,
   "eslintConfig": {
@@ -163,6 +167,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.4",
+    "husky": "^7.0.4",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
     "postcss-import": "^14.1.0",
