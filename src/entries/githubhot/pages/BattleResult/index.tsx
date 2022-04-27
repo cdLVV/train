@@ -26,6 +26,16 @@ function Page() {
   }, [navigate]);
 
   useEffect(() => {
+    if (!name1 || !name2) {
+      Modal.confirm({
+        title: "错误",
+        content: "Player名称或数量不正确",
+        onOk: handleRest,
+        okText: "返回",
+        cancelText: "取消",
+      });
+      return;
+    }
     const getPlayer = async (name: string) => {
       setLoading(true);
       const res = await getGithubUser(name).setConfig({
@@ -51,7 +61,7 @@ function Page() {
       .finally(() => {
         setLoading(false);
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name1, name2]);
 
   const [p1State, p2State] = useMemo(() => {
