@@ -2,10 +2,16 @@
 import { memo } from "react";
 import bgImg from "../../images/bg_pattern_02.png";
 
-function Header(props: any) {
+interface Props {
+  className?: string;
+}
+
+function Footer(props: Props) {
+  const { className = "" } = props;
+
   return (
     <div
-      className="bg-repeat bg-left-top py-3 text-white"
+      className={`bg-repeat bg-left-top py-3 text-white ${className}`}
       style={{
         backgroundSize: "246px 280px",
         backgroundImage: `url(${bgImg})`,
@@ -60,4 +66,4 @@ function Header(props: any) {
   );
 }
 
-export default memo(Header);
+export default memo(Footer);

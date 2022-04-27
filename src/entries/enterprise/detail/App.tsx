@@ -1,8 +1,9 @@
-import { memo, useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import "./App.less";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { getNewsDetailByCode, GetNewsDetailByCodeRes } from "@/api/enterprise";
+import errorImg from "../images/error.jpeg";
 import "lazysizes";
 import "lazysizes/plugins/parent-fit/ls.parent-fit";
 
@@ -10,39 +11,53 @@ function App() {
   const params = new URLSearchParams(window.location.search);
   const code = params.get("code") || "";
   const [data, setData] = useState<GetNewsDetailByCodeRes["data"]>();
+  const isLazyImg = useRef(false);
   const text = data?.text || "";
 
   const html = useMemo(() => {
     const regex3 = new RegExp(/<img [^>]*src=['"]([^'"]+)[^>]*>/gi);
 
-    return text.replace(regex3, function (match, capture) {
-      console.log("capture:", capture);
-      console.log("match:", match);
-      if (!match.includes("class=")) {
-        match = match.replace("<img ", '<img class="img"');
-      }
+    return isLazyImg.current
+      ? text.replace(regex3, function (match, capture) {
+          // console.log({ match, capture });
+          if (!match.includes("class=")) {
+            match = match.replace("<img ", '<img class="img"');
+          }
 
-      return match
-        .replace("src=", "data-src=")
-        .replace('class="', 'class="lazyload ')
-        .replace("class='", "class='lazyload ");
-    });
+          return match
+            .replace("src=", "data-src=")
+            .replace('class="', 'class="lazyload ')
+            .replace("class='", "class='lazyload ");
+        })
+      : text;
   }, [text]);
 
   useEffect(() => {
-    getNewsDetailByCode(code).then((res) => {
-      setData(res.data);
-    });
+    getNewsDetailByCode(code)
+      .then((res) => {
+        isLazyImg.current = true;
+        setData(res.data);
+      })
+      .catch((e) => {
+        setData({
+          code,
+          title: "暂未找到当前新闻",
+          text: `<img src="${errorImg}" class="error-img" />`,
+        });
+      });
   }, [code]);
 
   return (
-    <div className="news-detail">
+    <div className="news-detail flex flex-col">
       <Header />
-      <div className="news-detail-title">
+      <div className="news-detail-title flex-none">
         <div>{data?.title}</div>
       </div>
-      <div className="px-5 py-4 news-detail-content" dangerouslySetInnerHTML={{ __html: html }} />
-      <Footer />
+      <div
+        className="news-detail-content px-5 py-4 flex-shrink-0 flex-grow relative"
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
+      <Footer className="flex-none" />
     </div>
   );
 }

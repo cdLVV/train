@@ -1,0 +1,57 @@
+.player {
+  min-width: 30%;
+  .title {
+    @apply text-xl font-bold my-4;
+  }
+  .input-wrap {
+    display: flex;
+    align-items: center;
+    &:first-child {
+      margin-right: 50px;
+    }
+    & > input {
+      height: 40px;
+      border-style: solid;
+      border-width: 2px;
+      padding: 5px;
+      border-radius: 5px;
+      margin-right: 20px;
+    }
+    & > button {
+      height: 40px;
+      font-size: 16px;
+      padding: 0 20px;
+      border-radius: 3px;
+      border-width: 2px;
+      border-color: #000;
+      &:disabled {
+        background-color: rgba(239, 239, 239, 0.3) !important;
+        color: rgba(16, 16, 16, 0.3) !important;
+        border-color: rgba(239, 239, 239, 0.3) !important;
+      }
+    }
+  }
+  .user {
+    @apply flex items-center px-3 py-2 justify-center;
+    border-radius: 4px;
+    background-color: #dfdfdf;
+    & > img {
+      border-radius: 16px;
+      width: 64px;
+      height: 64px;
+      margin: 0 8px;
+    }
+    & > div {
+      flex: 1;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    & > i {
+      color: red;
+      cursor: pointer;
+    }
+    .fa-spinner {
+      color: white;
+    }
+  }
+}

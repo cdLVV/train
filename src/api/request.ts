@@ -8,6 +8,7 @@ import axios, {
 } from "axios";
 import qs from "qs";
 import { ApiBusinessError, ApiNetError } from "./error";
+import { showErrMsg } from "./utils";
 
 export type RequestBaseConfig = {
   bodyType?: "formData" | "json" | "url";
@@ -298,17 +299,16 @@ instance.interceptor.req((config) => {
 instance.interceptor.res((r) => {
   const { data, config } = r as InstanceResponse;
 
-  if (data.code === 200) {
+  if (config.notCheckCode || data.code === 200) {
     return data;
   }
 
+  if (config.showError ?? true) {
+    showErrMsg(data.desc);
+  }
+
   return Promise.reject(
-    new ApiBusinessError(
-      data.desc,
-      data.code,
-      data,
-      config
-    )
+    new ApiBusinessError(data.desc, data.code, data, config)
   );
 });
 
@@ -317,7 +317,7 @@ instance.interceptor.error((error) => {
   if (error instanceof ApiBusinessError) {
     return Promise.reject(error);
   }
-  const { response } = error as InstanceError;
+  const { response, config = {} } = error as InstanceError;
 
   let errmsg = "请求失败，请稍后再试";
   let errcode = -255;
@@ -338,6 +338,10 @@ instance.interceptor.error((error) => {
     }
   } else {
     errmsg = "请求失败，请检查网络";
+  }
+
+  if (config.showError ?? true) {
+    showErrMsg(errmsg);
   }
 
   return Promise.reject(new ApiNetError(errmsg, errcode));

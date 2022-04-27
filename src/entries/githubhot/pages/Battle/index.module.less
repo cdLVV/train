@@ -1,0 +1,45 @@
+.index {
+  .title {
+    @apply text-center text-2xl font-bold my-4;
+  }
+  .desc {
+    @apply flex items-center justify-center;
+    .descItem {
+      min-width: 184px;
+      display: flex;
+      flex-direction: column;
+      & > div {
+        font-size: 20px;
+        text-align: center;
+        margin: 8px 0;
+      }
+      & > i {
+        background-color: #eee;
+        font-size: 120px !important;
+        padding: 32px;
+        text-align: center;
+      }
+    }
+  }
+  .players {
+    display: flex;
+    padding: 20px 40px;
+    justify-content: center;
+    & > div:first-child {
+      margin-right: 20%;
+    }
+  }
+  .btnWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & > button {
+      height: 40px;
+      font-size: 18px;
+      padding: 0 40px;
+      border-radius: 3px;
+      border-width: 2px;
+      border-color: #000;
+    }
+  }
+}
