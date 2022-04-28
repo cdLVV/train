@@ -179,7 +179,7 @@ export interface GetGithubUserRes {
   stargazers_count: number;
   avatar_url: string;
   created_at: string;
-  html_url: "https://github.com/react";
+  html_url: string;
   id: number;
   login: string;
   type: string;
