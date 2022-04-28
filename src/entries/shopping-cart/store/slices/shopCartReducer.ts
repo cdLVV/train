@@ -86,5 +86,5 @@ export const shopCartSlice = createSlice<
 });
 
 // 导出actions
-export const { addProduct, subtractProduct, subtractQuantity } =
+export const { addProduct, subtractProduct, subtractQuantity, deleteAll } =
   shopCartSlice.actions;

@@ -21,6 +21,7 @@ function Products(props: Props) {
     isFreeShipping,
     img1,
     img2,
+    availableSizes,
   } = data;
   const [num1, num2] = useMemo(() => formatPrice(price).split("."), [price]);
 
@@ -45,6 +46,11 @@ function Products(props: Props) {
         {currencyFormat}
         <span className={styles.num1}>{num1}</span>
         <span className={styles.num2}>.{num2}</span>
+      </div>
+      <div className={styles.availableSizes}>
+        {availableSizes.map((item) => (
+          <span key={item}>{item}</span>
+        ))}
       </div>
       {!!installments && (
         <div className={styles.installments}>

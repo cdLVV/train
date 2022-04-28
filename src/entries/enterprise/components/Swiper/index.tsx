@@ -1,10 +1,11 @@
 import cn from "classnames";
 import React, { useRef, useEffect, useState, useCallback, memo } from "react";
+import LazyImage from "../LazyImage";
 import "./index.less";
 
 interface Iprops {
   defaultIndex: number;
-  imgList: string[];
+  imgList: { src: string; srcSet: string }[];
   autoPlay?: boolean;
 }
 function Swiper(props: Iprops) {
@@ -67,13 +68,13 @@ function Swiper(props: Iprops) {
   return (
     <div className="swiper">
       <ul>
-        {imgList.map((val: string, index) => {
+        {imgList.map(({ src, srcSet }, index) => {
           const left = currentIndex === 0 && index === length - 1;
           const right = currentIndex === length - 1 && index === 0;
 
           return (
             <li
-              key={val}
+              key={src}
               className={cn({
                 "swiper-item-cur": currentIndex === index,
                 "swiper-item-right": (currentIndex < index && !left) || right,
@@ -82,7 +83,7 @@ function Swiper(props: Iprops) {
                   preRef.current === index || currentIndex === index,
               })}
             >
-              <img key={val} src={val} alt="" />
+              <LazyImage src={src} srcSet={srcSet} defaultSrc="" alt="" />
             </li>
           );
         })}

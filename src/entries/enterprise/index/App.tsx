@@ -29,9 +29,21 @@ import news4 from "../images/news/4.webp";
 function App() {
   const imgList = useMemo(
     () => [
-      "https://wallpapers.com/images/high/jojo-bizarre-adventure-hero-banners-97au0jin9lw0i6lz.jpg",
-      "https://gamingtrend.com/wp-content/uploads/2018/08/jojosbizarreadventure-anime-keyart-s1tos3.jpg",
-      "https://www.yifengame.com/wp-content/uploads/2021/08/20210807031646-610dfb1e6c394.jpg",
+      {
+        src: "https://wallpapers.com/images/high/jojo-bizarre-adventure-hero-banners-97au0jin9lw0i6lz.jpg",
+        srcSet:
+          "https://img.win3000.com/m00/fc/b6/2c452935cbf0a2e01fcefbc198d19175.jpg 2x",
+      },
+      {
+        src: "https://gamingtrend.com/wp-content/uploads/2018/08/jojosbizarreadventure-anime-keyart-s1tos3.jpg",
+        srcSet:
+          "https://wowlavie-aws.hmgcdn.com/file/article_all/A1565008563.jpg 2x",
+      },
+      {
+        src: "https://www.yifengame.com/wp-content/uploads/2021/08/20210807031646-610dfb1e6c394.jpg",
+        srcSet:
+          "https://p5-tt.byteimg.com/origin/pgc-image/5f83ad50bdc14830969cd8f4c686621a.jpg 2x",
+      },
     ],
     []
   );

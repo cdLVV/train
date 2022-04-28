@@ -1,3 +1,4 @@
+import { Modal } from "antd";
 import classNames from "classnames";
 import { memo, useCallback } from "react";
 import { useAppDispatch } from "../../store/hooks";
@@ -6,6 +7,7 @@ import {
   ShopCartState,
   subtractProduct,
   subtractQuantity,
+  deleteAll,
 } from "../../store/slices/shopCartReducer";
 import { formatPrice } from "../../utils";
 import CartButton from "../CartButton";
@@ -35,6 +37,22 @@ function CartPanel(props: Props) {
   } = props;
 
   const dispatch = useAppDispatch();
+  const handleClearAll = useCallback(() => {
+    Modal.confirm({
+      title: "确认购买当前购物车的商品?",
+
+      content: `Checkout - Subtotal: $ ${formatPrice(totalPrice)}`,
+      okText: "确认",
+      onOk() {
+        dispatch(deleteAll({}));
+      },
+      cancelText: "再想想",
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [totalPrice]);
   const handleSubtractProduct = useCallback((item: any) => {
     dispatch(subtractProduct(item));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -114,33 +132,31 @@ function CartPanel(props: Props) {
             </div>
           )}
         </div>
-        <div className={styles.panelBottom}>
-          <div className={styles.textWrap}>
-            <div className={styles.text}>SUBTOTAL</div>
-            <div className={styles.price}>
-              <div className={styles.first}>{`$  ${formatPrice(
-                totalPrice
-              )}`}</div>
-              {totalInstallments && (
-                <div className={styles.last}>
-                  {`OR UP TO ${totalInstallments} x ${totalCurrencyFormat} ${formatPrice(
-                    totalPrice / totalInstallments
-                  )}`}
-                </div>
-              )}
-            </div>
-          </div>
-          <button
-            className={styles.checkBtn}
-            disabled={!count}
-            onClick={() =>
-              alert(`Checkout - Subtotal: $ ${formatPrice(totalPrice)}`)
-            }
-          >
-            Checkout
-          </button>
-        </div>
       </main>
+      <div className={styles.panelBottom}>
+        <div className={styles.textWrap}>
+          <div className={styles.text}>SUBTOTAL</div>
+          <div className={styles.price}>
+            <div className={styles.first}>{`$  ${formatPrice(
+              totalPrice
+            )}`}</div>
+            {totalInstallments && (
+              <div className={styles.last}>
+                {`OR UP TO ${totalInstallments} x ${totalCurrencyFormat} ${formatPrice(
+                  totalPrice / totalInstallments
+                )}`}
+              </div>
+            )}
+          </div>
+        </div>
+        <button
+          className={styles.checkBtn}
+          disabled={!count}
+          onClick={handleClearAll}
+        >
+          Checkout
+        </button>
+      </div>
     </div>
   );
 }
