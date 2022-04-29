@@ -91,7 +91,7 @@ function Page() {
     } catch (error) {
       setIsError(true);
     }
-    setIsLoading(false);
+    // setIsLoading(false);
     isLoadingRef.current = false;
   }, []);
 
