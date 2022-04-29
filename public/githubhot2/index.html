@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>githubhot2</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link href="index.css" rel="stylesheet" />
+    <link href="./lib/antd.min.css" rel="stylesheet" />
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <!-- <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script> -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/@babel/standalone/babel.min.js"
+    ></script>
+    <script src="./lib/antd.js"></script>
+    <script src="./lib/lazysizes.min.js"></script>
+    <script src="./lib/classNames.js"></script>
+    <script src="./lib/infiniteScroll.js"></script>
+    <script>
+      less = {
+        env: "development",
+        async: false,
+        fileAsync: false,
+        poll: 1000,
+        functions: {},
+        dumpLineNumbers: "comments",
+        relativeUrls: false,
+        rootpath: ":/a.com/",
+      };
+    </script>
+    <link href="./popular.less" rel="stylesheet" type="text/less" />
+    <script src="./lib/less.min.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      window.github = {
+        apis: {},
+        components: {},
+        utils: {},
+        injectApis(obj) {
+          console.log({ obj });
+          Object.keys(obj).map((key) => {
+            this.apis[key] = obj[key];
+          });
+        },
+        injectComponents(obj) {
+          Object.keys(obj).map((key) => {
+            this.components[key] = obj[key];
+          });
+        },
+        injectUtils(obj) {
+          Object.keys(obj).map((key) => {
+            this.utils[key] = obj[key];
+          });
+        },
+      };
+    </script>
+    <!-- We will put our React component inside this div. -->
+    <div id="root"></div>
+
+    <script type="text/javascript" src="api.js"></script>
+    <!-- Load our React component. -->
+    <script type="text/babel" src="popular.js"></script>
+    <script type="text/babel" src="index.js"></script>
+  </body>
+</html>
