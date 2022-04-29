@@ -1,4 +1,4 @@
-const fn = (function () {
+(function () {
   function showErrMsg(msg, title) {
     //   alert(msg);
     antd.notification.error({
@@ -111,6 +111,6 @@ const fn = (function () {
 
     return returnPromise;
   }
-  return getSearchRepositories;
+  const fn = getSearchRepositories;
+  window.github.injectApis({ getSearchRepositories: fn });
 })();
-window.github.injectApis({ getSearchRepositories: fn });
