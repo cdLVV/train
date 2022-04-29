@@ -4,8 +4,6 @@ import ReactDOM from "react-dom/client";
 import "./index.less";
 import App from "./App";
 
-console.log("--------------------");
-
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );

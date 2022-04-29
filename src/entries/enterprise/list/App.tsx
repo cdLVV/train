@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import { getNewsList, GetNewsListRes } from "@/api/enterprise";
 import NewsList from "../components/NewsList";
 import Pagination from "../components/Pagination";
+import Loader from "../components/Loader";
 
 const setHash = (str: string) => {
   window.location.hash = str;
@@ -18,6 +19,7 @@ function App() {
   const [limit, setLimit] = useState(paramsLimit);
   const [newsList, setNewsList] = useState<GetNewsListRes["data"]>();
   const [totalPage, setTotalPage] = useState<number>(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // hash路由变化时，根据路由渲染对应 UI
@@ -38,6 +40,8 @@ function App() {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
+    setNewsList([]);
     getNewsList()
       .setParams({
         page,
@@ -46,6 +50,9 @@ function App() {
       .then((res) => {
         setNewsList(res.data);
         setTotalPage(Math.ceil(res.meta.total / res.meta.per_page));
+      })
+      .finally(() => {
+        setTimeout(() => setLoading(false), 100);
       });
   }, [limit, page]);
 
@@ -56,7 +63,12 @@ function App() {
   return (
     <div className="enterprise">
       <Header />
-      <NewsList data={newsList} />
+      {loading && (
+        <div className="enterprise-loading">
+          <Loader isLoading />
+        </div>
+      )}
+      <NewsList className="enterprise-list" data={newsList} />
       <Pagination
         totalPage={totalPage}
         current={page}

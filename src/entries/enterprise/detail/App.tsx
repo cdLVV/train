@@ -54,7 +54,7 @@ function App() {
         <div>{data?.title}</div>
       </div>
       <div
-        className="news-detail-content px-5 py-4 flex-shrink-0 flex-grow relative"
+        className="news-detail-content py-4 flex-shrink-0 flex-grow relative mx-4 sm:mx-auto sm:max-w-[580px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] 2xl:max-w-[1200px]"
         dangerouslySetInnerHTML={{ __html: html }}
       />
       <Footer className="flex-none" />

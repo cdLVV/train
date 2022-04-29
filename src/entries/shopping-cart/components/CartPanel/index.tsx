@@ -138,9 +138,9 @@ function CartPanel(props: Props) {
           <div className={styles.text}>SUBTOTAL</div>
           <div className={styles.price}>
             <div className={styles.first}>{`$  ${formatPrice(
-              totalPrice
+              totalPrice || 0
             )}`}</div>
-            {totalInstallments && (
+            {!!totalInstallments && (
               <div className={styles.last}>
                 {`OR UP TO ${totalInstallments} x ${totalCurrencyFormat} ${formatPrice(
                   totalPrice / totalInstallments

@@ -5,13 +5,16 @@ import "./index.less";
 
 interface Props {
   data?: NewsItem[];
+  className?: string;
 }
 
 function Members(props: Props) {
-  const { data } = props;
+  const { data, className = "" } = props;
 
   return (
-    <section className="mt-4 section mx-4 sm:mx-auto sm:max-w-[580px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] 2xl:max-w">
+    <section
+      className={`${className} mt-4 section mx-4 sm:mx-auto sm:max-w-[580px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] 2xl:max-w-[1200px]`}
+    >
       <div className="flex flex-wrap m-auto">
         {data?.map((item) => (
           <a
