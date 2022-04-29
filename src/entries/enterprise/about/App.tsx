@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="enterprise flex flex-col">
       <Header />
-      <section className="flex-1 flex flex-col sm:flex-row py-4 px-3">
+      <section className="flex-1 flex flex-col sm:flex-row py-4 mx-4 sm:mx-auto sm:max-w-[580px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] 2xl:max-w-[1200px]">
         <div
           // style="width: 697px; height: 550px; border: #ccc solid 1px"
           className=" h-[550px] border border-gray-300 flex-none w-full sm:w-1/2"
